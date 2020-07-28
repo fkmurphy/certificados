@@ -97,7 +97,11 @@ class CertificadoController extends Controller
             $pdf->AddPage('L','','','','',25,25,25,25,5,5);
             $content = $this->renderPartial('_export',[
                 'title' => 'Este certificado fue emitido',
-                'nombre' => "Pedro Aznar"
+                'nombre' => "Pedro Aznar",
+                'nameSignerOne' => 'Leandro',
+                'nameSignerTwo' => 'Julian',
+                'messageDescription' => 'Por participar del curso de',
+                'courseName' => 'Corte y confección',
             ]);
             $pdf->WriteHTML($content);
             $pdf->Output();
