@@ -1,0 +1,51 @@
+body {
+    background-image: url("images/cert.png");
+    background-image-resize: 6;
+    font-family: 'Times New Romance';
+}
+#title{
+    text-align:center;
+    font-size: 40px;
+    position:absolute;
+    top:60mm;
+    left:0;
+    right:0;
+}
+#name{
+    font-weight: bold;
+    font-size:32px;
+    text-align:center;
+    position:absolute;
+    top:85mm;
+    left:0;
+    right:0;
+}
+.description{
+    text-align:center;
+    position:absolute;
+    top:100mm;
+    left:0;
+    right:0;
+}
+#init{
+    font-size:20px;
+}
+#course{
+    font-size:30px;
+}
+#signleft{
+    font-weight: bold;
+    font-size:40px;
+    text-align:left;
+    position:absolute;
+    top:150mm; 
+    left:60mm;   
+}
+#signright{
+    font-weight: bold;
+    font-size:40px;
+    text-align:right;
+    position:absolute;
+    top:150mm; 
+    right:60mm;
+}
