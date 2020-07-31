@@ -37,7 +37,7 @@ class Question extends \yii\db\ActiveRecord
         return [
             [['question', 'correct_responses', 'responses', 'quiz_id', 'created_at', 'updated_at'], 'required'],
             [['status', 'quiz_id', 'created_at', 'updated_at'], 'default', 'value' => null],
-            [['status', 'quiz_id', 'created_at', 'updated_at'], 'integer'],
+            [['status', 'quiz_id', 'created_at','type', 'updated_at'], 'integer'],
             [['question', 'correct_responses', 'responses'], 'string', 'max' => 255],
             [['quiz_id'], 'exist', 'skipOnError' => true, 'targetClass' => Quiz::className(), 'targetAttribute' => ['quiz_id' => 'id']],
         ];
@@ -50,10 +50,11 @@ class Question extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'question' => 'Question',
-            'correct_responses' => 'Correct Responses',
-            'responses' => 'Responses',
+            'question' => 'Pregunta',
+            'correct_responses' => 'Respuestas correctas',
+            'responses' => 'Respuestas',
             'status' => 'Status',
+            'type' => 'Tipo',
             'quiz_id' => 'Quiz ID',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

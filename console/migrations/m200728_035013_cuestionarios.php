@@ -33,6 +33,7 @@ class m200728_035013_cuestionarios extends Migration
             'correct_responses' => $this->string()->notNull(),
             'responses' => $this->string()->notNull(),
             'status' => $this->smallInteger()->notNull()->defaultValue(0),
+            'type' => $this->integer()->notNull()->defaultValue(0),
             'quiz_id' => $this->integer()->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
@@ -96,9 +97,17 @@ class m200728_035013_cuestionarios extends Migration
      */
     public function safeDown()
     {
-        echo "m200728_035013_cuestionarios cannot be reverted.\n";
+        echo "m200728_035013_cuestionarios can be reverted.\n";
+        $this->dropForeignKey('fk-user_response-quiz','user_response');
+        $this->dropForeignKey('fk-user_response-question','user_response');
+        $this->dropForeignKey('fk-user_response-user','user_response');
 
-        return false;
+        $this->dropForeignKey('fk-question-quiz','question');
+
+        $this->dropTable('{{%user_response}}');
+        $this->dropTable('{{%question}}');
+        $this->dropTable('{{%quiz}}');
+        return true;
     }
 
     /*
@@ -116,3 +125,4 @@ class m200728_035013_cuestionarios extends Migration
     }
     */
 }
+

@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Create Quiz', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear cuestionario', ['init'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -38,3 +39,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 </div>
+

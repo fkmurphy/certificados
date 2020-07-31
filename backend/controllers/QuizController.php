@@ -62,6 +62,24 @@ class QuizController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+    public function actionInit()
+    {
+        $model = new Quiz();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('init', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Creates a new Quiz model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
     public function actionCreate()
     {
         $model = new Quiz();
