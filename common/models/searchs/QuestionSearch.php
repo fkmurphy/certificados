@@ -1,15 +1,15 @@
 <?php
 
-namespace backend\models\searchs;
+namespace common\models\searchs;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Quiz;
+use common\models\Question;
 
 /**
- * QuizSearch represents the model behind the search form of `common\models\Quiz`.
+ * QuestionSearch represents the model behind the search form of `common\models\Question`.
  */
-class QuizSearch extends Quiz
+class QuestionSearch extends Question
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class QuizSearch extends Quiz
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['title'], 'safe'],
+            [['id', 'status', 'quiz_id', 'created_at', 'updated_at'], 'integer'],
+            [['question', 'correct_responses', 'responses'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class QuizSearch extends Quiz
      */
     public function search($params)
     {
-        $query = Quiz::find();
+        $query = Question::find();
 
         // add conditions that should always apply here
 
@@ -60,11 +60,14 @@ class QuizSearch extends Quiz
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
+            'quiz_id' => $this->quiz_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['ilike', 'title', $this->title]);
+        $query->andFilterWhere(['ilike', 'question', $this->question])
+            ->andFilterWhere(['ilike', 'correct_responses', $this->correct_responses])
+            ->andFilterWhere(['ilike', 'responses', $this->responses]);
 
         return $dataProvider;
     }

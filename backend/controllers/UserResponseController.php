@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Quiz;
-use common\models\searchs\QuizSearch;
+use common\models\UserResponse;
+use common\models\searchs\UserResponseSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * QuizController implements the CRUD actions for Quiz model.
+ * UserResponseController implements the CRUD actions for UserResponse model.
  */
-class QuizController extends Controller
+class UserResponseController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class QuizController extends Controller
     }
 
     /**
-     * Lists all Quiz models.
+     * Lists all UserResponse models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new QuizSearch();
+        $searchModel = new UserResponseSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class QuizController extends Controller
     }
 
     /**
-     * Displays a single Quiz model.
+     * Displays a single UserResponse model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class QuizController extends Controller
     }
 
     /**
-     * Creates a new Quiz model.
+     * Creates a new UserResponse model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Quiz();
+        $model = new UserResponse();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class QuizController extends Controller
     }
 
     /**
-     * Updates an existing Quiz model.
+     * Updates an existing UserResponse model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class QuizController extends Controller
     }
 
     /**
-     * Deletes an existing Quiz model.
+     * Deletes an existing UserResponse model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class QuizController extends Controller
     }
 
     /**
-     * Finds the Quiz model based on its primary key value.
+     * Finds the UserResponse model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Quiz the loaded model
+     * @return UserResponse the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Quiz::findOne($id)) !== null) {
+        if (($model = UserResponse::findOne($id)) !== null) {
             return $model;
         }
 
