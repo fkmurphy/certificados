@@ -1,26 +1,26 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 use unclead\multipleinput\MultipleInput;
 use unclead\multipleinput\MultipleInputColumn;
-use yii\widgets\ActiveForm;
-
 /* @var $this yii\web\View */
-/* @var $model common\models\Question */
-
-$this->title = 'Create Question';
-$this->params['breadcrumbs'][] = ['label' => 'Questions', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+/* @var $model common\models\Quiz */
+/* @var $form yii\widgets\ActiveForm */
 ?>
-<?php
- $form = ActiveForm::begin([
-    'enableAjaxValidation'      => true,
+
+<div class="quiz-form">
+
+    <?php  $form = ActiveForm::begin([
+    'enableAjaxValidation'      => false,
     'enableClientValidation'    => false,
     'validateOnChange'          => false,
     'validateOnSubmit'          => true,
     'validateOnBlur'            => false,
- ]); ?>
-    <?php echo $form->field($model, 'questions')->widget(MultipleInput::className(), [
+    ]); ?>
+
+    <?= $form->field($quiz, 'title')->textInput(['maxlength' => true]) ?>
+    <?php echo $form->field($questions, 'questions')->widget(MultipleInput::className(), [
         'max'               => 6,
         'min'               => 1, // should be at least 2 rows
         'allowEmptyList'    => false,
@@ -64,7 +64,11 @@ $this->params['breadcrumbs'][] = $this->title;
     ])
     ->label(false);
     ?>
+
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Crear', ['class' => 'btn btn-success']) ?>
     </div>
+
     <?php ActiveForm::end(); ?>
+
+</div>
