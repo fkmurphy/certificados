@@ -1,9 +1,9 @@
 <?php
 
 namespace common\models;
-
+use yii\behaviors\TimestampBehavior;
 use Yii;
-
+use yii\db\Expression;
 /**
  * This is the model class for table "quiz".
  *
@@ -26,6 +26,17 @@ class Quiz extends \yii\db\ActiveRecord
         return 'quiz';
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new Expression('NOW()'),
+            ]
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -35,7 +46,8 @@ class Quiz extends \yii\db\ActiveRecord
             //[['title', 'created_at', 'updated_at'], 'required'],
             [['title'], 'required'],
             [['status', 'created_at', 'updated_at'], 'default', 'value' => null],
-            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['status'], 'integer'],
+            [['updated_at','created_at'],'date'],
             [['title'], 'string', 'max' => 255],
         ];
     }

@@ -1,3 +1,3 @@
 <?php
-    echo $quiz->title;
+    echo $quiz->id;
     var_dump($questions); ?>

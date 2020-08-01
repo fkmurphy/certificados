@@ -44,10 +44,13 @@ class QuizCreatorController extends Controller
 
             $transaction = Yii::$app->db->beginTransaction();
             try{
-                if($quiz->load(Yii::$app->request->post()) ){//&& $quiz->save()){
-                    $questions->load(Yii::$app->request->post());//&& $questions->save();
+                $quiz->status = 1;
+                if($quiz->load(Yii::$app->request->post()) && $quiz->save()){
+                    $questions->load(Yii::$app->request->post());//&& 
+                    $questions->save($quiz);
                 }
                 $transaction->commit();
+                //$transaction->rollback();
                 return $this->render('visor', ['quiz' => $quiz,'questions' => $questions]);
             }catch (\Exception $e){
                 $transaction->rollBack();

@@ -22,8 +22,8 @@ class m200728_035013_cuestionarios extends Migration
             'id' => $this->primaryKey(),
             'title' => $this->string()->notNull(),
             'status' => $this->smallInteger()->notNull()->defaultValue(0),
-            'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->notNull(),
+            'created_at' => $this->date()->notNull(),
+            'updated_at' => $this->date()->notNull(),
         ], $tableOptions);
         
         // preguntas del cuestionario
@@ -35,8 +35,8 @@ class m200728_035013_cuestionarios extends Migration
             'status' => $this->smallInteger()->notNull()->defaultValue(0),
             'type' => $this->integer()->notNull()->defaultValue(0),
             'quiz_id' => $this->integer()->notNull(),
-            'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->notNull(),
+            'created_at' => $this->date()->notNull(),
+            'updated_at' => $this->date()->notNull(),
         ], $tableOptions);
 
         $this->addForeignKey(
@@ -58,8 +58,8 @@ class m200728_035013_cuestionarios extends Migration
             'user_id' => $this->integer()->notNull(),
             'question_id' => $this->integer()->notNull(),
             'quiz_id' => $this->integer()->notNull(),
-            'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->notNull(),
+            'created_at' => $this->date()->notNull(),
+            'updated_at' => $this->date()->notNull(),
         ], $tableOptions);
         $this->addForeignKey(
             'fk-user_response-user',

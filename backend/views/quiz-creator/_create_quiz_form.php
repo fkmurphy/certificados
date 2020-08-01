@@ -49,12 +49,12 @@ use unclead\multipleinput\MultipleInputColumn;
                     'columns' => [
                         [
                             'title' => 'Es correcta?',
-                            'name' => 'right',
+                            'name' => 'correct_response',
                             'type' => MultipleInputColumn::TYPE_CHECKBOX
                         ],
                         [
                             'title' => 'Respuesta',
-                            'name' => 'answer'
+                            'name' => 'response'
                         ]
                     ]
                 ]
