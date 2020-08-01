@@ -50,8 +50,7 @@ class QuizCreatorController extends Controller
                     $questions->save($quiz);
                 }
                 $transaction->commit();
-                //$transaction->rollback();
-                return $this->render('visor', ['quiz' => $quiz,'questions' => $questions]);
+                return $this->redirect(['quiz/visor', 'id' => $quiz->id]);
             }catch (\Exception $e){
                 $transaction->rollBack();
                 throw $e;

@@ -56,6 +56,19 @@ class QuizController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+     /**
+     * Displays a single Quiz model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionVisor($id)
+    {
+        
+        return $this->render('visor', [
+            'model' => $this->findModel($id),
+        ]);
+    }
 
     /**
      * Creates a new Quiz model.

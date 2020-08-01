@@ -73,6 +73,14 @@ class Question extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getCorrectReponses(){
+        return explode('/',$this->correct_responses);
+    }
+    
+    public function getResponses(){
+        return explode('/',$this->responses);
+    }
+
     /**
      * Gets query for [[Quiz]].
      *
