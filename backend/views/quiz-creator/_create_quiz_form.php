@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use unclead\multipleinput\MultipleInput;
 use unclead\multipleinput\MultipleInputColumn;
+use common\models\Question;
 /* @var $this yii\web\View */
 /* @var $model common\models\Quiz */
 /* @var $form yii\widgets\ActiveForm */
@@ -35,10 +36,7 @@ use unclead\multipleinput\MultipleInputColumn;
                 'type' => 'dropDownList',
                 'title' => 'Tipo de respuesta',
                 'defaultValue' => 1,
-                'items' => [
-                    1 => 'User 1',
-                    2 => 'User 2'
-                ]
+                'items' => Question::getTypes()
             ],
             [
                 'name' => 'responses',

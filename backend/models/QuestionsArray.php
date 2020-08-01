@@ -44,7 +44,7 @@ class QuestionsArray extends Model
                 }
                 
                 $model->question = $question;
-                $model->type = 3; // tipos
+                $model->type = $type; // tipos
                 $model->responses = substr($responses,0,-1);
                 $model->correct_responses = substr($correct_responses,0,-1);
                 $model->status = 1; // falta.

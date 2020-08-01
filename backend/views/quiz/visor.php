@@ -24,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <thead>
                     <tr>
                         <th scope="col">Respuestas</th>
+                        <th scope="col">Tipo</th>
                         <th scope="col">Es correcta </th>
                     </tr>
                 </thead>
@@ -32,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php foreach ($question->getResponses() as $response ) : ?>
                     <tr>
                         <th scope="row"><?= $response; ?></th>
+                        <td><?=$question->type ?></td>
                         <td>
                             <?php 
                                 if(in_array($response,$correct)){

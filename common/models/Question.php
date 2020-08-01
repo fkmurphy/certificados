@@ -81,6 +81,14 @@ class Question extends \yii\db\ActiveRecord
         return explode('/',$this->responses);
     }
 
+    public static function getTypes(){
+        return [
+            0 => 'Verdadero/Falso',
+            1 => 'Multiple respuestas',
+            2 => 'Una respuesta',
+        ];
+    }
+
     /**
      * Gets query for [[Quiz]].
      *

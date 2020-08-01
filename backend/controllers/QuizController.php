@@ -44,7 +44,7 @@ class QuizController extends Controller
         ]);
     }
 
-    /**
+     /**
      * Displays a single Quiz model.
      * @param integer $id
      * @return mixed
@@ -52,19 +52,6 @@ class QuizController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-     /**
-     * Displays a single Quiz model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionVisor($id)
-    {
-        
         return $this->render('visor', [
             'model' => $this->findModel($id),
         ]);
@@ -77,7 +64,7 @@ class QuizController extends Controller
      */
     public function actionInit()
     {
-        $model = new Quiz();
+        /*$model = new Quiz();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -85,7 +72,8 @@ class QuizController extends Controller
 
         return $this->render('init', [
             'model' => $model,
-        ]);
+        ]);*/
+        return $this->redirect(['quiz-creator/index']);
     }
 
     /**

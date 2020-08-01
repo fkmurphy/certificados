@@ -7,8 +7,8 @@ use unclead\multipleinput\MultipleInputColumn;
 /* @var $this yii\web\View */
 /* @var $model common\models\Quiz */
 
-$this->title = 'Init Quiz';
-$this->params['breadcrumbs'][] = ['label' => 'Quizzes', 'url' => ['index']];
+$this->title = 'Crear una encuesta';
+$this->params['breadcrumbs'][] = ['label' => 'Quizzes', 'url' => ['quiz/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="quiz-create">
