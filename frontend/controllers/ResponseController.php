@@ -1,9 +1,11 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
 use common\models\Quiz;
+use common\models\UserResponse;
+use frontend\models\ResponsesForm;
 use common\models\searchs\QuizSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -12,7 +14,7 @@ use yii\filters\VerbFilter;
 /**
  * QuizController implements the CRUD actions for Quiz model.
  */
-class QuizController extends Controller
+class ResponseController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -50,10 +52,17 @@ class QuizController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionGo($id)
     {
-        return $this->render('visor', [
-            'model' => $this->findModel($id),
+        $newResponse = new ResponsesForm();
+        $quiz = $this->findQuiz($id);
+        if ($newResponse->load(Yii::$app->request->post()) && $newResponse->save($quiz)) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('response_quiz', [
+            'quiz' => $quiz,
+            'userResponse' => $newResponse
         ]);
     }
 
@@ -140,14 +149,14 @@ class QuizController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
+        /**
      * Finds the Quiz model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
      * @return Quiz the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findQuiz($id)
     {
         if (($model = Quiz::findOne($id)) !== null) {
             return $model;
@@ -155,4 +164,7 @@ class QuizController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }
+
+
