@@ -57,7 +57,7 @@ class ResponseController extends Controller
         $newResponse = new ResponsesForm();
         $quiz = $this->findQuiz($id);
         if ($newResponse->load(Yii::$app->request->post()) && $newResponse->save($quiz)) {
-            return $this->redirect(['view', 'id' => $newResponse->id]);
+            return $this->redirect(['results', 'id' =>$id]);
         }
 
         return $this->render('response_quiz', [
