@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Question;
+use backend\models\QuestionsArray;
 use common\models\searchs\QuestionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -44,6 +45,24 @@ class QuestionController extends Controller
         ]);
     }
 
+    public function actionAddQuestions(){
+        $model = new QuestionsArray();
+        if($model->load(Yii::$app->request->post())){
+            $model->save();
+            //questions[0]
+                //question
+                //type
+                //responses
+                    //0
+                        //right
+                        //answer
+                    //1
+                        //right
+                        //answer
+            return $this->render('ver',['model' => $model]);
+        }
+        return $this->render('add_questions',['model' => $model]);
+    }
     /**
      * Displays a single Question model.
      * @param integer $id

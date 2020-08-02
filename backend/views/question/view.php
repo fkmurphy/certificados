@@ -32,7 +32,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'question',
             'correct_responses',
-            'responses',
+            [
+                'attribute' => 'responses',
+                'value' => function($model){
+                    $e = explode("/",$model->responses);
+                    $arr= "";
+                    foreach ($e as $key) {
+                        $arr.=$key. " y ";
+                    }
+                    return $arr;
+                }
+            ],
             'status',
             'quiz_id',
             'created_at',

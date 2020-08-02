@@ -5,17 +5,17 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Quiz */
 
-$this->title = 'Update Quiz: ' . $model->title;
+$this->title = 'Create Quiz';
 $this->params['breadcrumbs'][] = ['label' => 'Quizzes', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="quiz-update">
+<div class="quiz-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
-        'model' => $model,
+        'quiz' => $quiz,
+        'userResponse' => $userResponse
     ]) ?>
 
 </div>

@@ -9,16 +9,17 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="quiz-form">
-
+    <h3><?= $quiz->title ?></h3>
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    <?php
+     $count = 0;
+     foreach ($quiz->questions as $question) : ?>
+        <p><?php
+            echo $form->field($userResponse,'responses['.$count.']')->checkBoxList($question->getResponses()); 
+            $count++;
+        ?></p>
+    <?php endforeach; ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
