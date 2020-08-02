@@ -37,7 +37,7 @@ class UserResponse extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['response', 'user_id', 'question_id', 'quiz_id'], 'required'],
+            [['response', 'question_id', 'quiz_id'], 'required'],
             [['status', 'user_id', 'question_id', 'quiz_id', 'created_at', 'updated_at'], 'default', 'value' => null],
             [['status', 'user_id', 'question_id', 'quiz_id'], 'integer'],
             [['created_at', 'updated_at'],'date'],
@@ -57,6 +57,9 @@ class UserResponse extends \yii\db\ActiveRecord
                 'value' => new Expression('NOW()'),
             ]
         ];
+    }
+    public function getResponses(){
+        return explode('/',$this->response);
     }
     /**
      * {@inheritdoc}

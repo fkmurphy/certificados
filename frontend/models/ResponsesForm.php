@@ -32,6 +32,24 @@ class ResponsesForm extends Model
             // respuestas [0,2]
         //1 pregunta 2
             // respuestas [0]
+        $quizQuestions = $quiz->questions;
+        $cont = 0;
+        foreach ($this->responses as $questResponses) {
+            $userResponse = new UserResponse();
+            $userResponse->quiz_id = $quiz->id;
+            $userResponse->status = 1;
+            $userResponse->user_id = 1;
+            $question = $quizQuestions[$cont];
+            $cont++;
+            $userResponse->question_id = $question->id;
+            $realResponses = $question->getResponses();
+            $formatUserResponses = "";
+            foreach ($questResponses as $response) {
+                $formatUserResponses .= $realResponses[$response]."/";
+            }
+            $userResponse->response = substr($formatUserResponses,0,-1);
+            $userResponse->save();
+        }
         return true;
     }
   

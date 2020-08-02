@@ -57,7 +57,7 @@ class ResponseController extends Controller
         $newResponse = new ResponsesForm();
         $quiz = $this->findQuiz($id);
         if ($newResponse->load(Yii::$app->request->post()) && $newResponse->save($quiz)) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $newResponse->id]);
         }
 
         return $this->render('response_quiz', [
@@ -66,6 +66,14 @@ class ResponseController extends Controller
         ]);
     }
 
+    public function actionResults($id){
+        $quiz = $this->findQuiz($id);
+        $responses = $this->findResponses($id,Yii::$app->user->getId());
+        return $this->render('results',[
+            'quiz' => $quiz,
+            'responses' => $responses
+        ]);
+    }
     /**
      * Creates a new Quiz model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -73,54 +81,7 @@ class ResponseController extends Controller
      */
     public function actionInit()
     {
-        /*$model = new Quiz();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('init', [
-            'model' => $model,
-        ]);*/
         return $this->redirect(['quiz-creator/index']);
-    }
-
-    /**
-     * Creates a new Quiz model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Quiz();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Quiz model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -165,6 +126,13 @@ class ResponseController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    protected function findResponses($quizId, $userId){
+        if ($responses = UserResponse::find()->where(['=','quiz_id',$quizId])
+                ->where(['=','user_id',$userId])->all()){
+            return $responses;
+        }
+        throw new NotFoundHttpException("No results.");
+    }
 }
 
 
